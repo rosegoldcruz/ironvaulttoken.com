@@ -7,7 +7,7 @@ type Theme = "light" | "dark";
 function getTheme(): Theme {
   const saved = window.localStorage.getItem("iv-theme");
   if (saved === "light" || saved === "dark") return saved;
-  return "dark";
+  return "light";
 }
 
 function applyTheme(theme: Theme) {
@@ -16,7 +16,7 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const current = getTheme();

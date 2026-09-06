@@ -52,7 +52,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var t=localStorage.getItem('iv-theme');if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.ivTheme=t;document.documentElement.style.colorScheme=t}catch(e){}})()",
+              "(function(){try{var t=localStorage.getItem('iv-theme');if(t!=='light'&&t!=='dark')t='light';document.documentElement.dataset.ivTheme=t;document.documentElement.style.colorScheme=t}catch(e){}})()",
           }}
         />
         <link rel="preload" href="/animate/ivsol_coin_LIVE.optimized.glb" as="fetch" type="model/gltf-binary" crossOrigin="anonymous" />
