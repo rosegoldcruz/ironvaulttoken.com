@@ -131,12 +131,6 @@ export function IronVaultScroll({
               invalidateOnRefresh: true,
               onEnter: () => gsap.set(heroFrame, { autoAlpha: 1 }),
               onEnterBack: () => gsap.set(heroFrame, { autoAlpha: 1 }),
-              onLeave: () => gsap.set(heroFrame, { autoAlpha: 0 }),
-              onRefresh: (self) => {
-                gsap.set(heroFrame, {
-                  autoAlpha: self.scroll() > self.end ? 0 : 1,
-                });
-              },
             },
           });
 
