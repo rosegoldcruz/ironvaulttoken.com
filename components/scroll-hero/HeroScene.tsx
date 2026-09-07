@@ -65,19 +65,19 @@ type FlightKeyframe = {
 };
 
 const DESKTOP_ROCKET_KEYFRAMES: readonly FlightKeyframe[] = [
-  { at: 0, x: -0.53, y: 0, z: 2.5, rotationX: 0.05, rotationY: 0.08, rotationZ: -1.16, scale: 2.5 },
-  { at: 0.2, x: -0.19, y: 0.12, z: 2.6, rotationX: 0.08, rotationY: 0.12, rotationZ: -1.08, scale: 2.9 },
-  { at: 0.45, x: 0.06, y: 0.08, z: 2.65, rotationX: 0.06, rotationY: 0.08, rotationZ: -1.3, scale: 3 },
-  { at: 0.7, x: 0.31, y: 0.2, z: 2.6, rotationX: 0.02, rotationY: 0.04, rotationZ: -1.7, scale: 2.9 },
-  { at: 1, x: 0.54, y: 0.12, z: 2.5, rotationX: 0, rotationY: 0.02, rotationZ: -1.76, scale: 2.8 },
+  { at: 0, x: -0.53, y: 0, z: 2.5, rotationX: 0, rotationY: 0, rotationZ: -1.16, scale: 2.5 },
+  { at: 0.2, x: -0.19, y: 0.12, z: 2.6, rotationX: 0, rotationY: 0, rotationZ: -1.08, scale: 2.9 },
+  { at: 0.45, x: 0.06, y: 0.08, z: 2.65, rotationX: 0, rotationY: 0, rotationZ: -1.3, scale: 3 },
+  { at: 0.7, x: 0.31, y: 0.2, z: 2.6, rotationX: 0, rotationY: 0, rotationZ: -1.7, scale: 2.9 },
+  { at: 1, x: 0.54, y: 0.12, z: 2.5, rotationX: 0, rotationY: 0, rotationZ: -1.76, scale: 2.8 },
 ];
 
 const MOBILE_ROCKET_KEYFRAMES: readonly FlightKeyframe[] = [
-  { at: 0, x: -0.65, y: 0.04, z: 2.5, rotationX: 0.04, rotationY: 0.06, rotationZ: -1.14, scale: 1.15 },
-  { at: 0.2, x: -0.1, y: -0.02, z: 2.6, rotationX: 0.06, rotationY: 0.1, rotationZ: -1.08, scale: 1.32 },
-  { at: 0.45, x: 0.08, y: -0.08, z: 2.65, rotationX: 0.05, rotationY: 0.07, rotationZ: -1.3, scale: 1.38 },
-  { at: 0.7, x: 0.3, y: 0.12, z: 2.6, rotationX: 0.02, rotationY: 0.03, rotationZ: -1.68, scale: 1.3 },
-  { at: 1, x: 0.68, y: 0.08, z: 2.5, rotationX: 0, rotationY: 0.02, rotationZ: -1.74, scale: 1.22 },
+  { at: 0, x: -0.65, y: 0.04, z: 2.5, rotationX: 0, rotationY: 0, rotationZ: -1.14, scale: 1.15 },
+  { at: 0.2, x: -0.1, y: -0.02, z: 2.6, rotationX: 0, rotationY: 0, rotationZ: -1.08, scale: 1.32 },
+  { at: 0.45, x: 0.08, y: -0.08, z: 2.65, rotationX: 0, rotationY: 0, rotationZ: -1.3, scale: 1.38 },
+  { at: 0.7, x: 0.3, y: 0.12, z: 2.6, rotationX: 0, rotationY: 0, rotationZ: -1.68, scale: 1.3 },
+  { at: 1, x: 0.68, y: 0.08, z: 2.5, rotationX: 0, rotationY: 0, rotationZ: -1.74, scale: 1.22 },
 ];
 
 const DESKTOP_PAYLOAD_KEYFRAMES: readonly FlightKeyframe[] = [
