@@ -67,18 +67,18 @@ const sections = [
 export default function PrivacyPage() {
   return (
     <>
-      <main className="min-h-[100dvh] pb-[calc(env(safe-area-inset-bottom)+88px)] text-white lg:pb-0">
+      <main className="min-h-[100dvh] pb-[calc(env(safe-area-inset-bottom)+88px)] text-neutral-900 dark:text-white lg:pb-0">
         <SiteHeader />
 
         <section className="mx-auto w-full max-w-[1400px] px-4 pt-12 pb-8 sm:px-6 sm:pt-20 sm:pb-12">
           <div className="mx-auto max-w-4xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-300">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
               Privacy Policy
             </p>
-            <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl">
               Privacy Policy for Iron Vault / IVT MEDIA GROUP
             </h1>
-            <p className="max-w-3xl text-lg leading-relaxed text-white/60 sm:text-xl">
+            <p className="max-w-3xl text-lg leading-relaxed text-neutral-600 dark:text-white/60 sm:text-xl">
               This policy explains what personal information Iron Vault collects, how it is used, what third-party services support the platform, and the commitments IVT MEDIA GROUP makes regarding your data.
             </p>
           </div>
@@ -87,10 +87,10 @@ export default function PrivacyPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 sm:pb-24">
           <div className="mx-auto max-w-4xl space-y-8 sm:space-y-10">
             <div className="rounded-3xl border border-lime-400/30 bg-[rgba(163,230,53,0.06)] p-6 sm:p-8">
-              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">
+              <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
                 Important Summary
               </p>
-              <p className="text-base leading-relaxed text-white/70 sm:text-lg">
+              <p className="text-base leading-relaxed text-neutral-600 dark:text-white/70 sm:text-lg">
                 We collect information such as your name, email, phone number, and wallet address to provide course access,
                 token distribution workflows, and communications. We do not sell your data. Iron Vault may use providers including Clerk for authentication and MoonPay for payments.
               </p>
@@ -100,18 +100,18 @@ export default function PrivacyPage() {
               <section
                 key={section.id}
                 id={section.id}
-                className="rounded-3xl border border-white/10 bg-[rgba(255,255,255,0.04)] p-6 sm:p-8"
+                className="rounded-3xl border border-black/10 bg-[rgba(17,17,17,0.03)] p-6 dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)] sm:p-8"
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <span aria-hidden className="h-px w-7 bg-lime-300/50" />
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">
+                  <span aria-hidden className="h-px w-7 bg-lime-600/60 dark:bg-lime-300/50" />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
                     {section.eyebrow}
                   </p>
                 </div>
-                <h2 className="mb-4 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                <h2 className="mb-4 text-2xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-3xl">
                   {section.title}
                 </h2>
-                <div className="space-y-4 text-base leading-relaxed text-white/60 sm:text-lg">
+                <div className="space-y-4 text-base leading-relaxed text-neutral-600 dark:text-white/60 sm:text-lg">
                   {section.body.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}

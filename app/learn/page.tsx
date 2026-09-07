@@ -82,7 +82,7 @@ const transparency = [
 export default function LearnPage() {
   return (
     <>
-      <main className="min-h-[100dvh] overflow-hidden pb-[calc(env(safe-area-inset-bottom)+88px)] text-white lg:pb-0">
+      <main className="min-h-[100dvh] overflow-hidden pb-[calc(env(safe-area-inset-bottom)+88px)] text-neutral-900 dark:text-white lg:pb-0">
         <SiteHeader />
 
         {/* Hero */}
@@ -90,13 +90,13 @@ export default function LearnPage() {
           <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[520px] max-w-5xl rounded-full bg-[radial-gradient(circle_at_center,rgba(132,204,22,0.11),rgba(126,34,206,0.11)_38%,transparent_70%)] blur-3xl" />
           <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-300">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
                 The Iron Vault Academy
               </p>
-              <h1 className="mb-5 max-w-3xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <h1 className="mb-5 max-w-3xl text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-5xl lg:text-6xl">
                 Learn first. Participate after.
               </h1>
-              <p className="max-w-2xl text-lg leading-relaxed text-white/65 sm:text-xl">
+              <p className="max-w-2xl text-lg leading-relaxed text-neutral-600 dark:text-white/65 sm:text-xl">
                 Iron Vault begins with education. Start with the free introduction, understand the foundation, then choose whether a paid Academy track is right for you.
               </p>
 
@@ -114,18 +114,18 @@ export default function LearnPage() {
                   href="#modules"
                   aria-label="View the Iron Vault Academy module path"
                   data-reddit-event="Learn_Hero_ViewModules_Click"
-                  className="inline-flex min-h-[50px] items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-6 text-sm font-semibold text-white transition-all hover:border-lime-400/40 hover:bg-white/[0.08] hover:text-lime-200"
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-full border border-black/15 bg-black/[0.03] px-6 text-sm font-semibold text-neutral-900 transition-all hover:border-lime-500/40 hover:bg-black/[0.06] hover:text-lime-600 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:hover:border-lime-400/40 dark:hover:bg-white/[0.08] dark:hover:text-lime-200"
                 >
                   View Modules
                 </Link>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-white/10 bg-[rgba(255,255,255,0.05)] p-4 shadow-[0_24px_90px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:p-5">
-              <div className="rounded-2xl border border-white/10 bg-black/35 p-5 sm:p-6">
+            <div className="rounded-3xl border border-black/10 bg-[rgba(17,17,17,0.035)] p-4 shadow-[0_24px_90px_rgba(0,0,0,0.1)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(255,255,255,0.05)] dark:shadow-[0_24px_90px_rgba(0,0,0,0.35)] sm:p-5">
+              <div className="rounded-2xl border border-black/10 bg-white/60 p-5 dark:border-white/10 dark:bg-black/35 sm:p-6">
                 <div className="mb-5 flex items-center justify-between gap-4">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">Academy Flow</p>
-                  <span className="rounded-full border border-lime-400/25 bg-lime-400/10 px-3 py-1 text-xs font-semibold text-lime-200">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">Academy Flow</p>
+                  <span className="rounded-full border border-lime-500/30 bg-lime-500/10 px-3 py-1 text-xs font-semibold text-lime-700 dark:border-lime-400/25 dark:bg-lime-400/10 dark:text-lime-200">
                     Public Entry
                   </span>
                 </div>
@@ -152,13 +152,13 @@ export default function LearnPage() {
               {promiseCards.map(({ title, body, icon: Icon }) => (
                 <article
                   key={title}
-                  className="rounded-2xl border border-white/10 bg-[rgba(255,255,255,0.04)] p-6 transition-colors hover:border-lime-400/30 hover:bg-[rgba(255,255,255,0.08)]"
+                  className="rounded-2xl border border-black/10 bg-[rgba(17,17,17,0.03)] p-6 transition-colors hover:border-lime-500/40 hover:bg-[rgba(17,17,17,0.05)] dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)] dark:hover:border-lime-400/30 dark:hover:bg-[rgba(255,255,255,0.08)]"
                 >
-                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-lime-400/30 bg-lime-400/10 text-lime-300">
+                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-lime-500/30 bg-lime-500/10 text-lime-600 dark:border-lime-400/30 dark:bg-lime-400/10 dark:text-lime-300">
                     <Icon className="h-5 w-5" aria-hidden />
                   </div>
-                  <h2 className="mb-3 text-xl font-bold tracking-tight text-white">{title}</h2>
-                  <p className="text-sm leading-relaxed text-white/58 sm:text-base">{body}</p>
+                  <h2 className="mb-3 text-xl font-bold tracking-tight text-neutral-900 dark:text-white">{title}</h2>
+                  <p className="text-sm leading-relaxed text-neutral-600 dark:text-white/58 sm:text-base">{body}</p>
                 </article>
               ))}
             </div>
@@ -176,11 +176,11 @@ export default function LearnPage() {
 
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="rounded-2xl border border-lime-400/30 bg-lime-400/[0.05] p-6 sm:p-8">
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">MODULE 0 — FREE</p>
-                <h2 className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">MODULE 0 — FREE</p>
+                <h2 className="mb-3 text-2xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-3xl">
                   Start with the lesson, not the checkout.
                 </h2>
-                <p className="mb-6 text-base leading-relaxed text-white/60 sm:text-lg">
+                <p className="mb-6 text-base leading-relaxed text-neutral-600 dark:text-white/60 sm:text-lg">
                   The free entry explains why Iron Vault puts education first, what the Academy covers, and what to understand before moving into paid access.
                 </p>
                 <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
@@ -196,7 +196,7 @@ export default function LearnPage() {
                     href={IRON_VAULT_ROUTES.academyAccess}
                     aria-label="View Iron Vault Academy pricing tiers"
                     data-reddit-event="Learn_Body_ViewPricing_Click"
-                    className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-6 text-sm font-semibold text-white transition hover:border-lime-400/40 hover:text-lime-200"
+                    className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-black/15 bg-black/[0.03] px-6 text-sm font-semibold text-neutral-900 transition hover:border-lime-500/40 hover:text-lime-600 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:hover:border-lime-400/40 dark:hover:text-lime-200"
                   >
                     View Pricing
                   </Link>
@@ -206,21 +206,21 @@ export default function LearnPage() {
               <div className="flex flex-col">
                 <div className="grid gap-3 sm:grid-cols-2">
                   {lockedModules.map((module, index) => (
-                    <article key={module} className="rounded-2xl border border-white/10 bg-[rgba(255,255,255,0.04)] p-5">
+                    <article key={module} className="rounded-2xl border border-black/10 bg-[rgba(17,17,17,0.03)] p-5 dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)]">
                       <div className="mb-3 flex items-center justify-between gap-3">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/42">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-neutral-500 dark:text-white/42">
                           Module {String(index + 1).padStart(2, "0")}
                         </p>
-                        <span className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                        <span className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-black/[0.04] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-neutral-500 dark:border-white/10 dark:bg-black/30 dark:text-white/45">
                           <Lock className="h-3 w-3" aria-hidden />
                           Preview
                         </span>
                       </div>
-                      <h3 className="text-lg font-bold tracking-tight text-white">{module}</h3>
+                      <h3 className="text-lg font-bold tracking-tight text-neutral-900 dark:text-white">{module}</h3>
                     </article>
                   ))}
                 </div>
-                <p className="mt-6 text-sm text-center text-white/40">
+                <p className="mt-6 text-sm text-center text-neutral-500 dark:text-white/40">
                   Additional lessons and resources may be added as the Academy expands.
                 </p>
               </div>
@@ -228,10 +228,10 @@ export default function LearnPage() {
 
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {pathSteps.map((step) => (
-                <article key={step.number} className="rounded-2xl border border-white/10 bg-white/[0.035] p-5">
-                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-lime-300">Step {step.number}</p>
-                  <h3 className="mb-2 text-xl font-bold tracking-tight text-white">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-white/55">{step.body}</p>
+                <article key={step.number} className="rounded-2xl border border-black/10 bg-black/[0.02] p-5 dark:border-white/10 dark:bg-white/[0.035]">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-lime-600 dark:text-lime-300">Step {step.number}</p>
+                  <h3 className="mb-2 text-xl font-bold tracking-tight text-neutral-900 dark:text-white">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-neutral-600 dark:text-white/55">{step.body}</p>
                 </article>
               ))}
             </div>
@@ -254,21 +254,21 @@ export default function LearnPage() {
                   className={`relative overflow-hidden rounded-2xl border p-6 transition-colors sm:p-7 ${
                     tier.featured
                       ? "border-lime-400/35 bg-lime-400/[0.055]"
-                      : "border-white/10 bg-[rgba(255,255,255,0.04)] hover:border-lime-400/25"
+                      : "border-black/10 bg-[rgba(17,17,17,0.03)] hover:border-lime-500/35 dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)] dark:hover:border-lime-400/25"
                   }`}
                 >
                   {tier.featured && (
-                    <div className="mb-4 inline-flex rounded-full border border-lime-400/30 bg-lime-400/10 px-3 py-1 text-xs font-semibold text-lime-200">
+                    <div className="mb-4 inline-flex rounded-full border border-lime-500/30 bg-lime-500/10 px-3 py-1 text-xs font-semibold text-lime-700 dark:border-lime-400/30 dark:bg-lime-400/10 dark:text-lime-200">
                       Popular Track
                     </div>
                   )}
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">{tier.name}</p>
+                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">{tier.name}</p>
                   <div className="mb-4 flex items-end gap-3">
-                    <p className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">{tier.price}</p>
-                    <p className="pb-2 text-sm text-white/45">in coursework</p>
+                    <p className="text-4xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-5xl">{tier.price}</p>
+                    <p className="pb-2 text-sm text-neutral-500 dark:text-white/45">in coursework</p>
                   </div>
-                  <p className="mb-4 text-2xl font-extrabold tracking-tight text-lime-300">{tier.allocation}</p>
-                  <p className="mb-7 text-sm leading-relaxed text-white/58 sm:text-base">{tier.body}</p>
+                  <p className="mb-4 text-2xl font-extrabold tracking-tight text-lime-600 dark:text-lime-300">{tier.allocation}</p>
+                  <p className="mb-7 text-sm leading-relaxed text-neutral-600 dark:text-white/58 sm:text-base">{tier.body}</p>
                   <Link
                     href={IRON_VAULT_ROUTES.academyAccess}
                     aria-label={`Unlock the ${tier.name} Academy track`}
@@ -287,17 +287,17 @@ export default function LearnPage() {
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 sm:pb-20">
           <div className="mx-auto max-w-3xl">
             <div className="mb-4 flex items-center gap-3">
-              <span aria-hidden className="h-px w-7 bg-lime-300/50" />
-              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">RISK AND TRANSPARENCY</p>
+              <span aria-hidden className="h-px w-7 bg-lime-600/60 dark:bg-lime-300/50" />
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">RISK AND TRANSPARENCY</p>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-[rgba(255,255,255,0.04)]">
+            <div className="rounded-2xl border border-black/10 bg-[rgba(17,17,17,0.03)] dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)]">
               {transparency.map((item, index) => (
                 <div
                   key={item}
-                  className={`flex gap-3 px-5 py-4 sm:px-6 sm:py-5 ${index === transparency.length - 1 ? "" : "border-b border-white/10"}`}
+                  className={`flex gap-3 px-5 py-4 sm:px-6 sm:py-5 ${index === transparency.length - 1 ? "" : "border-b border-black/10 dark:border-white/10"}`}
                 >
-                  <Minus className="mt-1 h-4 w-4 shrink-0 text-lime-300" aria-hidden />
-                  <p className="text-base leading-relaxed text-white/62 sm:text-lg">{item}</p>
+                  <Minus className="mt-1 h-4 w-4 shrink-0 text-lime-600 dark:text-lime-300" aria-hidden />
+                  <p className="text-base leading-relaxed text-neutral-600 dark:text-white/62 sm:text-lg">{item}</p>
                 </div>
               ))}
             </div>
@@ -306,12 +306,12 @@ export default function LearnPage() {
 
         {/* Final CTA */}
         <section className="mx-auto w-full max-w-[1400px] px-4 pb-16 sm:px-6 sm:pb-24">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-lime-400/30 bg-[rgba(255,255,255,0.05)] p-6 text-center shadow-[0_24px_90px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:p-10">
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">ACADEMY ENTRY</p>
-            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <div className="mx-auto max-w-4xl rounded-3xl border border-lime-400/30 bg-[rgba(17,17,17,0.035)] p-6 text-center shadow-[0_24px_90px_rgba(0,0,0,0.1)] backdrop-blur-xl dark:bg-[rgba(255,255,255,0.05)] dark:shadow-[0_24px_90px_rgba(0,0,0,0.32)] sm:p-10">
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">ACADEMY ENTRY</p>
+            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl">
               Start with the lesson, not the hype.
             </h2>
-            <p className="mx-auto mb-7 max-w-2xl text-base leading-relaxed text-white/58 sm:text-lg">
+            <p className="mx-auto mb-7 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-white/58 sm:text-lg">
               Learn what Iron Vault is building, review the foundation, and move into paid access only when the Academy path makes sense.
             </p>
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
@@ -327,7 +327,7 @@ export default function LearnPage() {
                 href={IRON_VAULT_ROUTES.academyAccess}
                 aria-label="Get early access through Iron Vault Academy pricing"
                 data-reddit-event="Learn_FinalCTA_GetEarlyAccess_Click"
-                className="inline-flex min-h-[50px] items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-6 text-sm font-semibold text-white transition-all hover:border-lime-400/40 hover:bg-white/[0.08] hover:text-lime-200"
+                className="inline-flex min-h-[50px] items-center justify-center rounded-full border border-black/15 bg-black/[0.03] px-6 text-sm font-semibold text-neutral-900 transition-all hover:border-lime-500/40 hover:bg-black/[0.06] hover:text-lime-600 dark:border-white/15 dark:bg-white/[0.04] dark:text-white dark:hover:border-lime-400/40 dark:hover:bg-white/[0.08] dark:hover:text-lime-200"
               >
                 View Tracks
               </Link>
@@ -346,20 +346,20 @@ function SectionIntro({ label, title, body }: { label: string; title: string; bo
   return (
     <div className="mb-8 max-w-3xl">
       <div className="mb-4 flex items-center gap-3">
-        <span aria-hidden className="h-px w-7 bg-lime-300/50" />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">{label}</p>
+        <span aria-hidden className="h-px w-7 bg-lime-600/60 dark:bg-lime-300/50" />
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">{label}</p>
       </div>
-      <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">{title}</h2>
-      <p className="max-w-2xl text-base leading-relaxed text-white/58 sm:text-lg">{body}</p>
+      <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl">{title}</h2>
+      <p className="max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-white/58 sm:text-lg">{body}</p>
     </div>
   )
 }
 
 function FlowRow({ label, value, active = false }: { label: string; value: string; active?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3">
-      <span className="text-sm font-medium text-white/55">{label}</span>
-      <span className={`text-right text-sm font-semibold ${active ? "text-lime-300" : "text-white/75"}`}>{value}</span>
+    <div className="flex items-center justify-between gap-4 rounded-2xl border border-black/10 bg-black/[0.02] px-4 py-3 dark:border-white/10 dark:bg-white/[0.035]">
+      <span className="text-sm font-medium text-neutral-600 dark:text-white/55">{label}</span>
+      <span className={`text-right text-sm font-semibold ${active ? "text-lime-600 dark:text-lime-300" : "text-neutral-600 dark:text-white/75"}`}>{value}</span>
     </div>
   )
 }

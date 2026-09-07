@@ -152,7 +152,10 @@
   --iv-hairline: rgba(29, 29, 31, .10);
   --iv-hairline-soft: rgba(29, 29, 31, .06);
   --iv-soft-fill: rgba(29, 29, 31, .05);
-  --iv-nav-bg: #2E2E30;
+  --iv-nav-bg: rgba(255, 255, 255, .86);
+  --iv-nav-cta-bg: #16161a;
+  --iv-nav-cta-fg: #ffffff;
+  --iv-nav-cta-bg-hover: #050506;
   --iv-accent: #635BFF;
   --iv-gold: #A36B00;
   --iv-green: #6f9f28;
@@ -169,7 +172,10 @@ html[data-iv-theme="dark"] {
   --iv-hairline: rgba(255, 255, 255, .13);
   --iv-hairline-soft: rgba(255, 255, 255, .08);
   --iv-soft-fill: rgba(255, 255, 255, .055);
-  --iv-nav-bg: #15161b;
+  --iv-nav-bg: rgba(13, 14, 18, .86);
+  --iv-nav-cta-bg: #f7f7f5;
+  --iv-nav-cta-fg: #111114;
+  --iv-nav-cta-bg-hover: #ffffff;
   --iv-accent: #8b6cff;
   --iv-gold: #f2c15f;
   --iv-green: #a7ff4f;
@@ -205,7 +211,9 @@ body {
   gap: 20px;
   border-radius: 999px;
   background: var(--iv-nav-bg);
-  color: #f7f7f5;
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--iv-hairline);
+  color: var(--iv-ink);
   padding: 10px 12px 10px 22px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, .13);
   pointer-events: auto;
@@ -227,7 +235,7 @@ body {
 .iv-wordmark:where(:not(.iv-root *)) span {
   font-family: var(--font-instrument-serif), Georgia, serif;
   font-size: 17px;
-  color: rgba(247, 247, 245, .74);
+  color: var(--iv-ink-2);
 }
 
 .iv-nav-links:where(:not(.iv-root *)) {
@@ -242,14 +250,14 @@ body {
 
 .iv-nav-links:where(:not(.iv-root *)) a,
 .iv-nav-mobile a {
-  color: rgba(247, 247, 245, .72);
+  color: var(--iv-ink-2);
   text-decoration: none;
   transition: color .18s ease;
 }
 
 .iv-nav-links:where(:not(.iv-root *)) a:hover,
 .iv-nav-mobile a:hover {
-  color: #fff;
+  color: var(--iv-ink);
 }
 
 .iv-nav-actions {
@@ -265,10 +273,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, .11);
+  border: 1px solid var(--iv-hairline);
   border-radius: 999px;
-  background: rgba(255, 255, 255, .06);
-  color: #fff;
+  background: var(--iv-soft-fill);
+  color: var(--iv-ink);
   font-family: var(--font-geist), sans-serif;
   font-size: 13px;
   line-height: 1;
@@ -278,18 +286,19 @@ body {
 
 .iv-theme-toggle:where(:not(.iv-root *)) {
   gap: 8px;
-  background: var(--iv-nav-bg);
-  color: #fff;
+  background: var(--iv-soft-fill);
+  color: var(--iv-ink);
   padding: 0 14px;
 }
 
 .iv-nav .iv-theme-toggle:where(:not(.iv-root *)) {
-  background: rgba(255, 255, 255, .06);
+  background: var(--iv-soft-fill);
 }
 
 .iv-nav-cta:where(:not(.iv-root *)) {
   min-width: 88px;
-  background: #050506;
+  background: var(--iv-nav-cta-bg);
+  color: var(--iv-nav-cta-fg);
   padding: 0 18px;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
 }
@@ -302,12 +311,14 @@ body {
 .iv-theme-toggle:where(:not(.iv-root *)):hover,
 .iv-nav-cta:where(:not(.iv-root *)):hover,
 .iv-nav-menu-button:hover {
-  border-color: rgba(255, 255, 255, .22);
-  background: rgba(255, 255, 255, .1);
+  border-color: var(--iv-hairline);
+  background: var(--iv-soft-fill);
+  filter: brightness(0.96);
 }
 
 .iv-nav-cta:where(:not(.iv-root *)):hover {
-  background: #111114;
+  background: var(--iv-nav-cta-bg-hover);
+  filter: none;
 }
 
 .iv-nav-mobile {
@@ -316,15 +327,17 @@ body {
   display: grid;
   gap: 1px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, .10);
+  border: 1px solid var(--iv-hairline);
   border-radius: 18px;
   background: var(--iv-nav-bg);
+  color: var(--iv-ink);
+  backdrop-filter: blur(18px);
   pointer-events: auto;
 }
 
 .iv-nav-mobile a {
   padding: 15px 18px;
-  background: rgba(255, 255, 255, .04);
+  background: var(--iv-soft-fill);
   font-size: 14px;
 }
 
@@ -1437,6 +1450,45 @@ html[data-iv-theme="light"] .iv-member-shell {
 .glass-border-subtle:hover {
   filter: drop-shadow(0 0 1px rgba(255, 0, 0, 0.06)) drop-shadow(0.5px 0 1px rgba(0, 255, 0, 0.05))
     drop-shadow(-0.5px 0 1px rgba(0, 0, 255, 0.04));
+}
+
+/* Light-mode glass: the rgba(255,255,255,...) tints above read as frosted glass on a
+   dark backdrop; on a light backdrop the same values wash out to near-invisible, so
+   light mode gets a dark-tinted glass instead. */
+html:not(.dark) .liquid-glass {
+  background: rgba(17, 17, 17, 0.04);
+  border-color: rgba(17, 17, 17, 0.1);
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+html:not(.dark) .liquid-glass-enhanced {
+  background: rgba(17, 17, 17, 0.05);
+  border-color: rgba(17, 17, 17, 0.12);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+html:not(.dark) .liquid-glass-header {
+  background: rgba(17, 17, 17, 0.03);
+  border-color: rgba(17, 17, 17, 0.08);
+  box-shadow: 0 2px 12px rgba(17, 17, 17, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+html:not(.dark) .glass-border {
+  border-color: rgba(17, 17, 17, 0.1);
+  background: rgba(17, 17, 17, 0.04);
+  box-shadow: 0 4px 16px rgba(17, 17, 17, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+html:not(.dark) .glass-border-enhanced {
+  border-color: rgba(17, 17, 17, 0.13);
+  background: rgba(17, 17, 17, 0.05);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+html:not(.dark) .glass-border-subtle {
+  border-color: rgba(17, 17, 17, 0.07);
+  background: rgba(17, 17, 17, 0.03);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 /* Logo Marquee Animations - Seamless Infinite Loop */

@@ -52,7 +52,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "(function(){try{var t=localStorage.getItem('iv-theme');if(t!=='light'&&t!=='dark')t='light';document.documentElement.dataset.ivTheme=t;document.documentElement.style.colorScheme=t}catch(e){}})()",
+              "(function(){try{var t=localStorage.getItem('iv-theme');if(t!=='light'&&t!=='dark')t='light';document.documentElement.dataset.ivTheme=t;document.documentElement.style.colorScheme=t;document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}})()",
           }}
         />
         <link rel="preload" href="/animate/ivsol_coin_LIVE.optimized.glb" as="fetch" type="model/gltf-binary" crossOrigin="anonymous" />
@@ -85,7 +85,7 @@ export default function RootLayout({
       <body>
         <ClerkProvider appearance={{ theme: shadcn }}>
           <RedditTrackingProvider />
-          <div className="fixed inset-0 z-0 bg-[radial-gradient(circle_at_80%_-10%,rgba(139,92,246,0.16),transparent_48%),linear-gradient(180deg,#050507_0%,#0a0a0d_100%)]" />
+          <div className="fixed inset-0 z-0 bg-[radial-gradient(circle_at_80%_-10%,rgba(99,91,255,0.07),transparent_48%),linear-gradient(180deg,#fdfdfc_0%,#f6f5f3_100%)] dark:bg-[radial-gradient(circle_at_80%_-10%,rgba(139,92,246,0.16),transparent_48%),linear-gradient(180deg,#050507_0%,#0a0a0d_100%)]" />
           <div className="relative z-10">{children}</div>
         </ClerkProvider>
       </body>

@@ -27,7 +27,7 @@ export function BottomNav() {
       transition={{ ...spring, delay: 0.15 }}
       className="fixed inset-x-0 bottom-0 z-50 px-3 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 lg:hidden"
     >
-      <div className="mx-auto flex max-w-md items-stretch justify-between rounded-2xl border border-white/10 bg-[rgba(10,12,20,0.9)] p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
+      <div className="mx-auto flex max-w-md items-stretch justify-between rounded-2xl border border-black/10 bg-white/90 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:border-white/10 dark:bg-[rgba(10,12,20,0.9)] dark:shadow-[0_12px_40px_rgba(0,0,0,0.55)]">
         {tabs.map(({ href, label, icon: Icon }) => {
           const active = pathname === href || (href !== "/" && pathname?.startsWith(href))
           return (
@@ -45,10 +45,10 @@ export function BottomNav() {
                 />
               )}
               <Icon
-                className={`relative z-10 h-5 w-5 ${active ? "text-lime-300" : "text-white/70"}`}
+                className={`relative z-10 h-5 w-5 ${active ? "text-lime-600 dark:text-lime-300" : "text-neutral-500 dark:text-white/70"}`}
                 aria-hidden
               />
-              <span className={`relative z-10 ${active ? "text-lime-200" : "text-white/60"}`}>
+              <span className={`relative z-10 ${active ? "text-lime-700 dark:text-lime-200" : "text-neutral-500 dark:text-white/60"}`}>
                 {label}
               </span>
             </Link>

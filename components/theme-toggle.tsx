@@ -10,6 +10,7 @@ const STORAGE_KEY = "iv-theme"
 function applyTheme(theme: IronVaultTheme) {
   document.documentElement.dataset.ivTheme = theme
   document.documentElement.style.colorScheme = theme
+  document.documentElement.classList.toggle("dark", theme === "dark")
 }
 
 function getStoredTheme(): IronVaultTheme {

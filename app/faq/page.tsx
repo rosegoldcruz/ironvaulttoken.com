@@ -131,16 +131,16 @@ export default function FAQPage() {
 
   return (
     <>
-      <main className="min-h-[100dvh] pb-[calc(env(safe-area-inset-bottom)+88px)] text-white lg:pb-0">
+      <main className="min-h-[100dvh] pb-[calc(env(safe-area-inset-bottom)+88px)] text-neutral-900 dark:text-white lg:pb-0">
         <SiteHeader />
 
         {/* Hero */}
         <section className="mx-auto w-full max-w-[1400px] px-4 pt-12 pb-8 sm:px-6 sm:pt-20 sm:pb-12">
           <div className="mx-auto max-w-3xl">
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-300">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
               Iron Vault &mdash; Frequently Asked Questions
             </p>
-            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-extrabold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl">
               Questions we&apos;d want answered if we were you.
             </h1>
           </div>
@@ -152,13 +152,13 @@ export default function FAQPage() {
             {faqs.map((section, si) => (
               <div key={section.category}>
                 <div className="mb-4 flex items-center gap-3">
-                  <span aria-hidden className="h-px w-7 bg-lime-300/50" />
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-300">
+                  <span aria-hidden className="h-px w-7 bg-lime-600/60 dark:bg-lime-300/50" />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-600 dark:text-lime-300">
                     {section.category}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-white/10 bg-[rgba(255,255,255,0.04)] sm:p-2">
+                <div className="rounded-2xl border border-black/10 bg-[rgba(17,17,17,0.03)] dark:border-white/10 dark:bg-[rgba(255,255,255,0.04)] sm:p-2">
                   {section.items.map((item, ii) => {
                     const key = `${si}-${ii}`
                     const isOpen = openKey === key
@@ -166,20 +166,20 @@ export default function FAQPage() {
                     return (
                       <div
                         key={key}
-                        className={`${isLast ? "" : "border-b border-white/10"} px-4 sm:px-6`}
+                        className={`${isLast ? "" : "border-b border-black/10 dark:border-white/10"} px-4 sm:px-6`}
                       >
                         <button
                           type="button"
                           onClick={() => toggle(key)}
                           aria-expanded={isOpen}
                           aria-controls={`faq-panel-${key}`}
-                          className="flex min-h-[56px] w-full items-center justify-between gap-4 py-4 text-left text-base font-medium text-white transition-colors hover:text-lime-300 sm:text-lg"
+                          className="flex min-h-[56px] w-full items-center justify-between gap-4 py-4 text-left text-base font-medium text-neutral-900 transition-colors hover:text-lime-600 dark:text-white dark:hover:text-lime-300 sm:text-lg"
                         >
                           <span>{item.q}</span>
                           <motion.span
                             animate={{ rotate: isOpen ? 45 : 0 }}
                             transition={spring}
-                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-300"
+                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-lime-400/40 bg-lime-400/10 text-lime-600 dark:text-lime-300"
                           >
                             <Plus className="h-4 w-4" aria-hidden />
                           </motion.span>
@@ -195,7 +195,7 @@ export default function FAQPage() {
                               transition={spring}
                               className="overflow-hidden"
                             >
-                              <p className="whitespace-pre-line pb-5 text-base leading-relaxed text-white/60 sm:text-lg">
+                              <p className="whitespace-pre-line pb-5 text-base leading-relaxed text-neutral-600 dark:text-white/60 sm:text-lg">
                                 {item.a}
                               </p>
                             </motion.div>
@@ -209,14 +209,14 @@ export default function FAQPage() {
             ))}
 
             {/* Bottom CTA — matches IronVaultDifference card language */}
-            <div className="rounded-2xl border border-lime-400/30 bg-[rgba(255,255,255,0.04)] p-6 text-center sm:p-10">
-              <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-lime-300">
+            <div className="rounded-2xl border border-lime-400/30 bg-[rgba(17,17,17,0.03)] p-6 text-center dark:bg-[rgba(255,255,255,0.04)] sm:p-10">
+              <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-lime-600 dark:text-lime-300">
                 Still have questions?
               </p>
-              <h3 className="mb-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+              <h3 className="mb-3 text-2xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-3xl">
                 We have a real phone number and real people who answer it.
               </h3>
-              <p className="mx-auto mb-6 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
+              <p className="mx-auto mb-6 max-w-xl text-base leading-relaxed text-neutral-600 dark:text-white/55 sm:text-lg">
                 Talk to a human. Get the answer. Then decide.
               </p>
               <Link
