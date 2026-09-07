@@ -40,36 +40,36 @@ IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the
 
 ## Key Features
 
-* Solana-native SPL token
-* Transparent on-chain transfer fee mechanism
+* Solana Token-2022 token
+* Token-2022 transfer-fee extension
 * Verified mint address for security
-* Community governance alignment
+* Publicly visible on-chain activity
 * Educational utility integration
 
 ## Use Cases
 
-* Access to Vaulted Academy curriculum
-* Reward mechanism for contribution
-* Community participation token
-* Education infrastructure support`,
+* Verify IV-SOL against the published mint address
+* Use compatible Solana wallets and tools
+* Access supported Iron Vault ecosystem utilities
+* Review token activity through a Solana explorer`,
     html: `<h1>IV-SOL Overview</h1>
 <p>Iron Vault is an ecosystem combining education, infrastructure, and community participation in the digital economy.</p>
 <h2>What is IV-SOL?</h2>
 <p>IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the Solana blockchain. It serves as utility that powers access and alignment within Vaulted Academy, connecting learners, contributors, and builders.</p>
 <h2>Key Features</h2>
 <ul>
-<li>Solana-native SPL token</li>
-<li>Transparent on-chain transfer fee mechanism</li>
+<li>Solana Token-2022 token</li>
+<li>Token-2022 transfer-fee extension</li>
 <li>Verified mint address for security</li>
-<li>Community governance alignment</li>
+<li>Publicly visible on-chain activity</li>
 <li>Educational utility integration</li>
 </ul>
 <h2>Use Cases</h2>
 <ul>
-<li>Access to Vaulted Academy curriculum</li>
-<li>Reward mechanism for contribution</li>
-<li>Community participation token</li>
-<li>Education infrastructure support</li>
+<li>Verify IV-SOL against the published mint address</li>
+<li>Use compatible Solana wallets and tools</li>
+<li>Access supported Iron Vault ecosystem utilities</li>
+<li>Review token activity through a Solana explorer</li>
 </ul>`,
   },
   {
@@ -83,74 +83,76 @@ IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the
 
 **Verified Mint:** \`DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV\`
 
-**Blockchain:** Solana (SPL Token)
+**Blockchain:** Solana (Token-2022 Program)
 
 **Verification:** View on [Solscan](https://solscan.io/token/DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV)
 
-## Token Economics
+## Token Standard
 
-### Supply
+### Program
 
-* Initial Supply: Defined at token creation
-* Current Circulating: Variable based on network activity
-* Transfer Fee: Applied transparently to all transfers
+* Solana Token-2022 Program
+* Token-2022 transfer-fee extension
+* Publicly inspectable mint and token instructions
+* Current on-chain values should be verified through a Solana explorer
 
 ### Transfer Fee Mechanism
 
-IV-SOL implements a transparent, on-chain transfer fee:
+IV-SOL uses the Token-2022 transfer-fee extension. Transfer details are recorded in the token instructions and can be inspected on-chain.
 
 * Fee deducted from each transfer
 * Publicly visible in token instructions
-* Supports ecosystem sustainability
-* No hidden mechanisms
+* Implemented through the Token-2022 Program
+* Verifiable through compatible Solana explorers and tools
 
-## Tokenomics
+## Token Behavior
 
-The IV-SOL tokenomics are designed to:
+IV-SOL is documented as a utility token within the Iron Vault ecosystem:
 
-* Align long-term participant incentives
-* Support Vaulted Academy operations
-* Fund community infrastructure
-* Reward educational contribution
+* It does not represent equity in IVT Media Group
+* It does not guarantee financial returns or investment outcomes
+* Availability, pricing, and liquidity depend on market conditions
+* Users should verify the mint address before interacting
 
 ## Token Security
 
 * Managed through established Solana infrastructure
-* Standard SPL token implementation
+* Solana Token-2022 implementation
 * Community verification encouraged
 * Transparent on-chain operations`,
     html: `<h1>IV-SOL Token Specifications</h1>
 <h2>Token Address</h2>
 <p><strong>Verified Mint:</strong> <code>DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV</code></p>
-<p><strong>Blockchain:</strong> Solana (SPL Token)</p>
+<p><strong>Blockchain:</strong> Solana (Token-2022 Program)</p>
 <p><strong>Verification:</strong> View on <a href="https://solscan.io/token/DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV">Solscan</a></p>
-<h2>Token Economics</h2>
-<h3>Supply</h3>
+<h2>Token Standard</h2>
+<h3>Program</h3>
 <ul>
-<li>Initial Supply: Defined at token creation</li>
-<li>Current Circulating: Variable based on network activity</li>
-<li>Transfer Fee: Applied transparently to all transfers</li>
+<li>Solana Token-2022 Program</li>
+<li>Token-2022 transfer-fee extension</li>
+<li>Publicly inspectable mint and token instructions</li>
+<li>Current on-chain values should be verified through a Solana explorer</li>
 </ul>
 <h3>Transfer Fee Mechanism</h3>
-<p>IV-SOL implements a transparent, on-chain transfer fee:</p>
+<p>IV-SOL uses the Token-2022 transfer-fee extension. Transfer details are recorded in the token instructions and can be inspected on-chain.</p>
 <ul>
 <li>Fee deducted from each transfer</li>
 <li>Publicly visible in token instructions</li>
-<li>Supports ecosystem sustainability</li>
-<li>No hidden mechanisms</li>
+<li>Implemented through the Token-2022 Program</li>
+<li>Verifiable through compatible Solana explorers and tools</li>
 </ul>
-<h2>Tokenomics</h2>
-<p>The IV-SOL tokenomics are designed to:</p>
+<h2>Token Behavior</h2>
+<p>IV-SOL is documented as a utility token within the Iron Vault ecosystem:</p>
 <ul>
-<li>Align long-term participant incentives</li>
-<li>Support Vaulted Academy operations</li>
-<li>Fund community infrastructure</li>
-<li>Reward educational contribution</li>
+<li>It does not represent equity in IVT Media Group</li>
+<li>It does not guarantee financial returns or investment outcomes</li>
+<li>Availability, pricing, and liquidity depend on market conditions</li>
+<li>Users should verify the mint address before interacting</li>
 </ul>
 <h2>Token Security</h2>
 <ul>
 <li>Managed through established Solana infrastructure</li>
-<li>Standard SPL token implementation</li>
+<li>Solana Token-2022 implementation</li>
 <li>Community verification encouraged</li>
 <li>Transparent on-chain operations</li>
 </ul>`,
@@ -424,14 +426,14 @@ Building core infrastructure for long-term participation in the digital economy.
 * Interactive assessments
 * Project-based learning paths
 * Mentorship programs
-* Community contribution rewards
+* Community contribution tools
 
 ## Future: Digital Economy Infrastructure
 
 * Expanded utility for IV-SOL
-* Cross-chain integration
+* Additional ecosystem integrations
 * Advanced analytics and reporting
-* Governance mechanisms
+* Community feedback mechanisms
 * Enterprise partnerships
 
 ## Long-term Vision
@@ -467,14 +469,14 @@ The future of Iron Vault depends on capable community members like you:
 <li>Interactive assessments</li>
 <li>Project-based learning paths</li>
 <li>Mentorship programs</li>
-<li>Community contribution rewards</li>
+<li>Community contribution tools</li>
 </ul>
 <h2>Future: Digital Economy Infrastructure</h2>
 <ul>
 <li>Expanded utility for IV-SOL</li>
-<li>Cross-chain integration</li>
+<li>Additional ecosystem integrations</li>
 <li>Advanced analytics and reporting</li>
-<li>Governance mechanisms</li>
+<li>Community feedback mechanisms</li>
 <li>Enterprise partnerships</li>
 </ul>
 <h2>Long-term Vision</h2>
