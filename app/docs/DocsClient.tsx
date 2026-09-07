@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { ArrowUpRight, ChevronRight, Menu, Search, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Search, X } from "lucide-react";
 import { ThemeToggle } from "@/app/iv/ThemeToggle";
 import { docs } from "./data";
 import styles from "./docs.module.css";
@@ -33,11 +33,22 @@ function addHeadingIds(html: string) {
   ));
 }
 
+function enhanceArticleHtml(html: string, copiedValue: string) {
+  return addHeadingIds(html).replace(
+    /<code>([A-Za-z0-9]{32,})<\/code>/g,
+    (_match, value) => (
+      `<button type="button" data-copy-value="${value}" aria-label="Copy address ${value}">` +
+      `<code>${value}</code><span aria-live="polite">${copiedValue === value ? "Copied" : "Copy"}</span></button>`
+    ),
+  );
+}
+
 export function DocsClient() {
   const [search, setSearch] = useState("");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [publicNavOpen, setPublicNavOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
+  const [copiedValue, setCopiedValue] = useState("");
 
   const filteredDocs = useMemo(() => {
     const term = search.trim().toLowerCase();
@@ -53,9 +64,23 @@ export function DocsClient() {
   const currentDoc = filteredDocs.find((doc) => doc.id === activeSection) ?? filteredDocs[0];
 
   const articleHtml = useMemo(
-    () => (currentDoc ? addHeadingIds(currentDoc.html) : ""),
-    [currentDoc],
+    () => (currentDoc ? enhanceArticleHtml(currentDoc.html, copiedValue) : ""),
+    [copiedValue, currentDoc],
   );
+
+  const navigationGroups = useMemo(() => {
+    const categories = Array.from(new Set(filteredDocs.map((doc) => doc.category)));
+    return categories.map((category) => ({
+      category,
+      items: filteredDocs.filter((doc) => doc.category === category),
+    }));
+  }, [filteredDocs]);
+
+  const currentDocIndex = currentDoc ? docs.findIndex((doc) => doc.id === currentDoc.id) : -1;
+  const previousDoc = currentDocIndex > 0 ? docs[currentDocIndex - 1] : undefined;
+  const nextDoc = currentDocIndex >= 0 && currentDocIndex < docs.length - 1
+    ? docs[currentDocIndex + 1]
+    : undefined;
 
   const toc = useMemo(() => {
     if (!currentDoc) return [];
@@ -120,17 +145,21 @@ export function DocsClient() {
       </div>
 
       <nav className={styles.sidebarNav} aria-label="Documentation sections">
-        {filteredDocs.map((doc) => (
-          <button
-            type="button"
-            key={doc.id}
-            onClick={() => selectDoc(doc.id)}
-            className={`${styles.navItem} ${currentDoc?.id === doc.id ? styles.active : ""}`}
-            aria-current={currentDoc?.id === doc.id ? "page" : undefined}
-          >
-            <span className={styles.navCategory}>{doc.category}</span>
-            <span className={styles.navTitle}>{doc.title}</span>
-          </button>
+        {navigationGroups.map((group) => (
+          <div className={styles.navGroup} key={group.category}>
+            <p>{group.category}</p>
+            {group.items.map((doc) => (
+              <button
+                type="button"
+                key={doc.id}
+                onClick={() => selectDoc(doc.id)}
+                className={`${styles.navItem} ${currentDoc?.id === doc.id ? styles.active : ""}`}
+                aria-current={currentDoc?.id === doc.id ? "page" : undefined}
+              >
+                <span className={styles.navTitle}>{doc.title}</span>
+              </button>
+            ))}
+          </div>
         ))}
       </nav>
 
@@ -182,7 +211,7 @@ export function DocsClient() {
       <section className={styles.productHeader} aria-labelledby="documentation-title">
         <div className={styles.productHeaderInner}>
           <Image src="/favicon.svg" width={64} height={64} alt="" priority />
-          <div>
+          <div className={styles.productHeading}>
             <p>Iron Vault</p>
             <h1 id="documentation-title">Documentation</h1>
             <span>Technical reference for IV-SOL and the Iron Vault ecosystem.</span>
@@ -207,7 +236,7 @@ export function DocsClient() {
             >
               <Menu size={18} />
               <span>Browse docs</span>
-              <ChevronRight size={17} />
+              <ChevronDown size={17} />
             </button>
             <a href="/swap" className={styles.mobileSwap}>Swap IV-SOL</a>
           </div>
@@ -220,16 +249,37 @@ export function DocsClient() {
                 <p className={styles.description}>{currentDoc.description}</p>
               </header>
 
-              <div className={styles.docBody} dangerouslySetInnerHTML={{ __html: articleHtml }} />
+              <div
+                className={styles.docBody}
+                onClick={async (event) => {
+                  const target = (event.target as HTMLElement).closest<HTMLElement>("[data-copy-value]");
+                  const value = target?.dataset.copyValue;
+                  if (!value) return;
+
+                  try {
+                    await navigator.clipboard.writeText(value);
+                    setCopiedValue(value);
+                    window.setTimeout(() => setCopiedValue(""), 1800);
+                  } catch {
+                    setCopiedValue("");
+                  }
+                }}
+                dangerouslySetInnerHTML={{ __html: articleHtml }}
+              />
 
               <footer className={styles.docFooter}>
-                <div>
-                  <p>Token interface</p>
-                  <span>Use the verified IV-SOL route on Jupiter.</span>
-                </div>
-                <a href="/swap">
-                  Swap IV-SOL <ArrowUpRight size={16} />
-                </a>
+                {previousDoc ? (
+                  <button type="button" onClick={() => selectDoc(previousDoc.id)}>
+                    <ArrowLeft size={16} aria-hidden="true" />
+                    <span><small>Previous</small>{previousDoc.title}</span>
+                  </button>
+                ) : <span aria-hidden="true" />}
+                {nextDoc ? (
+                  <button type="button" onClick={() => selectDoc(nextDoc.id)}>
+                    <span><small>Next</small>{nextDoc.title}</span>
+                    <ArrowRight size={16} aria-hidden="true" />
+                  </button>
+                ) : null}
               </footer>
             </article>
           ) : (
@@ -267,7 +317,12 @@ export function DocsClient() {
             aria-label="Close documentation navigation"
             onClick={() => setMobileNavOpen(false)}
           />
-          <aside className={styles.mobileDrawer} aria-label="Documentation navigation drawer">
+          <aside
+            className={styles.mobileDrawer}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Documentation navigation drawer"
+          >
             <div className={styles.drawerHeader}>
               <div>
                 <p>Iron Vault</p>
