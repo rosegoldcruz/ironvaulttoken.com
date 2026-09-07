@@ -195,8 +195,8 @@ html[data-iv-theme="dark"] .root {
 }
 
 .heroCanvas {
-  position: absolute;
-  z-index: 2;
+  position: fixed;
+  z-index: 12;
   inset: 0;
   pointer-events: none;
 }

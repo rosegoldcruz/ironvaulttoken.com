@@ -23,6 +23,8 @@ const SCROLL_KEYS = new Set([
   " ",
 ]);
 
+const HOME_SCROLL_RESTORE_KEY = "iron-vault:home-scroll-y";
+
 export function IronVaultScroll({
   showHeader = true,
 }: {
@@ -40,6 +42,7 @@ export function IronVaultScroll({
   const launchAssetsEnabledRef = useRef(false);
   const overviewRef = useRef<HTMLElement>(null);
   const heroProgress = useRef(0);
+  const launchProgress = useRef(-1);
 
   const [heroSceneEnabled, setHeroSceneEnabled] = useState(true);
   const [launchAssetsEnabled, setLaunchAssetsEnabled] = useState(false);
@@ -82,15 +85,31 @@ export function IronVaultScroll({
 
   useEffect(() => {
     let cleanup: (() => void) | undefined;
+    const navigation = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    const storedScroll = Number(sessionStorage.getItem(HOME_SCROLL_RESTORE_KEY));
+    let restoredScroll = navigation?.type === "reload" && Number.isFinite(storedScroll)
+      ? storedScroll
+      : null;
 
-    void import("@/app/motion/gsap").then(({ gsap }) => {
+    const rememberScroll = () => {
+      sessionStorage.setItem(HOME_SCROLL_RESTORE_KEY, String(window.scrollY));
+    };
+
+    window.addEventListener("pagehide", rememberScroll);
+
+    void import("@/app/motion/gsap").then(({ gsap, ScrollTrigger }) => {
+      let syncHeroFromScroll: (() => void) | undefined;
+      let syncLaunchFromScroll: (() => void) | undefined;
       const root = rootRef.current;
       const hero = heroRef.current;
       const heroFrame = heroFrameRef.current;
       const headline = headlineRef.current;
       const overview = overviewRef.current;
+      const ecosystem = root?.querySelector<HTMLElement>("#ecosystem");
 
-      if (!root || !hero || !heroFrame || !headline || !overview) {
+      if (!root || !hero || !heroFrame || !headline || !overview || !ecosystem) {
         return;
       }
 
@@ -110,6 +129,14 @@ export function IronVaultScroll({
               pin: heroFrame,
               scrub: 1,
               invalidateOnRefresh: true,
+              onEnter: () => gsap.set(heroFrame, { autoAlpha: 1 }),
+              onEnterBack: () => gsap.set(heroFrame, { autoAlpha: 1 }),
+              onLeave: () => gsap.set(heroFrame, { autoAlpha: 0 }),
+              onRefresh: (self) => {
+                gsap.set(heroFrame, {
+                  autoAlpha: self.scroll() > self.end ? 0 : 1,
+                });
+              },
             },
           });
 
@@ -258,7 +285,21 @@ export function IronVaultScroll({
             },
           };
 
+          const sync = () => {
+            const trigger = heroTimeline.scrollTrigger;
+            if (!trigger) return;
+
+            heroProgress.current = gsap.utils.clamp(
+              0,
+              1,
+              (trigger.scroll() - trigger.start) / (trigger.end - trigger.start),
+            );
+          };
+
+          syncHeroFromScroll = sync;
+
           return () => {
+            if (syncHeroFromScroll === sync) syncHeroFromScroll = undefined;
             heroImpactRef.current = null;
 
             impactTimelines.forEach((impact) => {
@@ -266,6 +307,61 @@ export function IronVaultScroll({
             });
 
             heroTimeline.kill();
+          };
+        };
+
+        const setupLaunchTimeline = (start: string, end: string) => {
+          const setLaunchProgress = (value: number) => {
+            launchProgress.current = value;
+
+            if (value >= 0 && value <= 1 && !launchAssetsEnabledRef.current) {
+              launchAssetsEnabledRef.current = true;
+              setLaunchAssetsEnabled(true);
+            }
+
+            heroInvalidateRef.current?.();
+          };
+
+          const timeline = ScrollTrigger.create({
+            trigger: overview,
+            start,
+            endTrigger: ecosystem,
+            end,
+            invalidateOnRefresh: true,
+            onEnter: () => setLaunchProgress(0),
+            onEnterBack: () => setLaunchProgress(1),
+            onUpdate: (self) => setLaunchProgress(self.progress),
+            onLeave: () => setLaunchProgress(1),
+            onLeaveBack: () => setLaunchProgress(-1),
+            onRefresh: (self) => {
+              const scroll = self.scroll();
+              setLaunchProgress(scroll < self.start ? -1 : scroll > self.end ? 1 : self.progress);
+            },
+          });
+
+          const exit = ScrollTrigger.create({
+            trigger: ecosystem,
+            start: "top top",
+            onEnter: () => setLaunchProgress(2),
+            onLeaveBack: () => setLaunchProgress(1),
+          });
+
+          const sync = () => {
+            const scroll = timeline.scroll();
+            const progress = gsap.utils.clamp(
+              0,
+              1,
+              (scroll - timeline.start) / (timeline.end - timeline.start),
+            );
+            setLaunchProgress(scroll < timeline.start ? -1 : scroll > timeline.end ? 1 : progress);
+          };
+
+          syncLaunchFromScroll = sync;
+
+          return () => {
+            if (syncLaunchFromScroll === sync) syncLaunchFromScroll = undefined;
+            timeline.kill();
+            exit.kill();
           };
         };
 
@@ -277,6 +373,7 @@ export function IronVaultScroll({
               -15,
               [1, 2, 3],
             );
+            const killLaunch = setupLaunchTimeline("top 30%", "top 22%");
 
             const wordNodes =
               gsap.utils.toArray<HTMLElement>(
@@ -300,6 +397,7 @@ export function IronVaultScroll({
 
             return () => {
               killHero();
+              killLaunch();
               wordTimeline.kill();
             };
           },
@@ -309,13 +407,15 @@ export function IronVaultScroll({
           "(max-width: 767px) and (prefers-reduced-motion: no-preference)",
           () => {
             const killHero = setupHeroTimeline(
-              "+=330%",
+              "+=95%",
               -5,
               [4, 3],
             );
+            const killLaunch = setupLaunchTimeline("top 10%", "top 30%");
 
             return () => {
               killHero();
+              killLaunch();
             };
           },
         );
@@ -329,15 +429,42 @@ export function IronVaultScroll({
         cleanup = () => media.revert();
       }, root);
 
+      const syncRestoredScroll = () => {
+        if (restoredScroll !== null) {
+          ScrollTrigger.refresh();
+          window.scrollTo(0, restoredScroll);
+          restoredScroll = null;
+        } else {
+          ScrollTrigger.refresh();
+        }
+
+        ScrollTrigger.update();
+        syncHeroFromScroll?.();
+        syncLaunchFromScroll?.();
+        heroInvalidateRef.current?.();
+      };
+
+      window.addEventListener("load", syncRestoredScroll);
+      window.addEventListener("pageshow", syncRestoredScroll);
+
+      if (document.readyState === "complete") {
+        queueMicrotask(syncRestoredScroll);
+      }
+
       const previousCleanup = cleanup;
 
       cleanup = () => {
+        window.removeEventListener("load", syncRestoredScroll);
+        window.removeEventListener("pageshow", syncRestoredScroll);
         previousCleanup?.();
         context.revert();
       };
     });
 
-    return () => cleanup?.();
+    return () => {
+      window.removeEventListener("pagehide", rememberScroll);
+      cleanup?.();
+    };
   }, []);
 
   return (
@@ -379,6 +506,23 @@ export function IronVaultScroll({
       ) : null}
 
       <main>
+        {heroSceneEnabled ? (
+          <SceneGate className={styles.heroCanvas}>
+            {(active) => (
+              <HeroScene
+                active={active}
+                progress={heroProgress}
+                launchProgress={launchProgress}
+                anchors={hopAnchorsRef}
+                impact={heroImpactRef}
+                invalidateRef={heroInvalidateRef}
+                launchAssetsEnabled={launchAssetsEnabled}
+                onCoinReady={() => undefined}
+              />
+            )}
+          </SceneGate>
+        ) : null}
+
         <section
           ref={heroRef}
           className={styles.hero}
@@ -470,24 +614,6 @@ export function IronVaultScroll({
                 </span>
               </span>
             </h1>
-
-            {heroSceneEnabled ? (
-              <SceneGate className={styles.heroCanvas}>
-                {(active) => (
-                  <HeroScene
-                    active={active}
-                    progress={heroProgress}
-                    anchors={hopAnchorsRef}
-                    impact={heroImpactRef}
-                    invalidateRef={heroInvalidateRef}
-                    launchAssetsEnabled={
-                      launchAssetsEnabled
-                    }
-                    onCoinReady={() => undefined}
-                  />
-                )}
-              </SceneGate>
-            ) : null}
 
             <div
               className={styles.heroRule}

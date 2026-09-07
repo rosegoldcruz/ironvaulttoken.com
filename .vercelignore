@@ -1,0 +1,2 @@
+# Keep the local rollback/source asset out of production deployments.
+public/glb/rockety.original.glb

@@ -17,6 +17,7 @@ export type HeroImpactDriver = {
 type HeroSceneProps = {
   active: boolean;
   progress: MutableRefObject<number>;
+  launchProgress: MutableRefObject<number>;
   anchors: MutableRefObject<HeroHopAnchors>;
   impact: MutableRefObject<HeroImpactDriver | null>;
   invalidateRef: MutableRefObject<(() => void) | null>;
@@ -31,9 +32,6 @@ const DESKTOP_ANCHOR_INDEXES = [0, 1, 2, 3] as const;
 const MOBILE_ANCHOR_INDEXES = [0, 4, 3] as const;
 const COIN_LAUNCH_START = 0.91;
 const COIN_LAUNCH_END = 0.96;
-const ROCKET_START = 0.94;
-const ROCKET_END = 1;
-const PAYLOAD_RELEASE = 0.97;
 const HOP_DWELL = 0.12;
 // Contact is decided by the rendered coin: past apex and its lowest point within this many world units (per unit of coin scale) of the live landing point.
 const CONTACT_START_PROGRESS = 0.42;
@@ -52,8 +50,77 @@ const DRACO_DECODER_PATH = "/draco/";
 const HERO_COIN_MODEL_URL = "/animate/ivsol_coin_LIVE.optimized.glb";
 const HERO_COIN_FRONT_NAME = "tripo_node_8175b927-0694-410e-825a-46cb097d1866.001";
 const HERO_COIN_REVERSE_NAME = "IVSOL_Coin_Reverse";
-const ROCKET_MODEL_URL = "/animate/rocket 3d model.glb";
+const ROCKET_MODEL_URL = "/glb/rockety.optimized.glb";
 const AIRDROP_MODEL_URL = "/models/airdrop.web.glb";
+
+type FlightKeyframe = {
+  at: number;
+  x: number;
+  y: number;
+  z: number;
+  rotationX: number;
+  rotationY: number;
+  rotationZ: number;
+  scale: number;
+};
+
+const DESKTOP_ROCKET_KEYFRAMES: readonly FlightKeyframe[] = [
+  { at: 0, x: -0.53, y: 0, z: 2.5, rotationX: 0.05, rotationY: 0.08, rotationZ: -1.16, scale: 2.5 },
+  { at: 0.2, x: -0.19, y: 0.12, z: 2.6, rotationX: 0.08, rotationY: 0.12, rotationZ: -1.08, scale: 2.9 },
+  { at: 0.45, x: 0.06, y: 0.08, z: 2.65, rotationX: 0.06, rotationY: 0.08, rotationZ: -1.3, scale: 3 },
+  { at: 0.7, x: 0.31, y: 0.2, z: 2.6, rotationX: 0.02, rotationY: 0.04, rotationZ: -1.7, scale: 2.9 },
+  { at: 1, x: 0.54, y: 0.12, z: 2.5, rotationX: 0, rotationY: 0.02, rotationZ: -1.76, scale: 2.8 },
+];
+
+const MOBILE_ROCKET_KEYFRAMES: readonly FlightKeyframe[] = [
+  { at: 0, x: -0.65, y: 0.04, z: 2.5, rotationX: 0.04, rotationY: 0.06, rotationZ: -1.14, scale: 1.15 },
+  { at: 0.2, x: -0.1, y: -0.02, z: 2.6, rotationX: 0.06, rotationY: 0.1, rotationZ: -1.08, scale: 1.32 },
+  { at: 0.45, x: 0.08, y: -0.08, z: 2.65, rotationX: 0.05, rotationY: 0.07, rotationZ: -1.3, scale: 1.38 },
+  { at: 0.7, x: 0.3, y: 0.12, z: 2.6, rotationX: 0.02, rotationY: 0.03, rotationZ: -1.68, scale: 1.3 },
+  { at: 1, x: 0.68, y: 0.08, z: 2.5, rotationX: 0, rotationY: 0.02, rotationZ: -1.74, scale: 1.22 },
+];
+
+const DESKTOP_PAYLOAD_KEYFRAMES: readonly FlightKeyframe[] = [
+  { at: 0.3, x: -0.08, y: -0.1, z: 2.15, rotationX: -0.04, rotationY: 0, rotationZ: -0.08, scale: 0.001 },
+  { at: 0.38, x: -0.1, y: -0.17, z: 2.15, rotationX: -0.04, rotationY: 0.02, rotationZ: -0.03, scale: 2.4 },
+  { at: 0.52, x: -0.08, y: -0.24, z: 2.1, rotationX: -0.03, rotationY: -0.02, rotationZ: 0.04, scale: 3.6 },
+  { at: 0.72, x: -0.08, y: -0.17, z: 2.1, rotationX: -0.02, rotationY: 0.02, rotationZ: -0.04, scale: 4.2 },
+  { at: 1, x: 0.08, y: -0.25, z: 2.05, rotationX: -0.02, rotationY: -0.02, rotationZ: 0.05, scale: 4 },
+];
+
+const MOBILE_PAYLOAD_KEYFRAMES: readonly FlightKeyframe[] = [
+  { at: 0.3, x: -0.04, y: -0.08, z: 2.15, rotationX: -0.04, rotationY: 0, rotationZ: -0.06, scale: 0.001 },
+  { at: 0.38, x: 0, y: -0.13, z: 2.15, rotationX: -0.04, rotationY: 0.02, rotationZ: -0.02, scale: 0.9 },
+  { at: 0.52, x: 0.02, y: -0.2, z: 2.1, rotationX: -0.03, rotationY: -0.02, rotationZ: 0.04, scale: 1.55 },
+  { at: 0.72, x: -0.04, y: -0.16, z: 2.1, rotationX: -0.02, rotationY: 0.02, rotationZ: -0.04, scale: 1.75 },
+  { at: 1, x: 0.08, y: -0.24, z: 2.05, rotationX: -0.02, rotationY: -0.02, rotationZ: 0.05, scale: 1.65 },
+];
+
+function interpolateFlight(progress: number, keyframes: readonly FlightKeyframe[]): FlightKeyframe {
+  const last = keyframes[keyframes.length - 1];
+
+  for (let index = 0; index < keyframes.length - 1; index += 1) {
+    const from = keyframes[index];
+    const to = keyframes[index + 1];
+    if (progress > to.at) continue;
+
+    const local = THREE.MathUtils.clamp((progress - from.at) / (to.at - from.at), 0, 1);
+    const eased = THREE.MathUtils.smootherstep(local, 0, 1);
+
+    return {
+      at: progress,
+      x: THREE.MathUtils.lerp(from.x, to.x, eased),
+      y: THREE.MathUtils.lerp(from.y, to.y, eased),
+      z: THREE.MathUtils.lerp(from.z, to.z, eased),
+      rotationX: THREE.MathUtils.lerp(from.rotationX, to.rotationX, eased),
+      rotationY: THREE.MathUtils.lerp(from.rotationY, to.rotationY, eased),
+      rotationZ: THREE.MathUtils.lerp(from.rotationZ, to.rotationZ, eased),
+      scale: THREE.MathUtils.lerp(from.scale, to.scale, eased),
+    };
+  }
+
+  return last;
+}
 
 function segmentForProgress(progress: number, landingProgress: readonly number[]) {
   for (let index = 0; index < landingProgress.length - 1; index += 1) {
@@ -130,6 +197,10 @@ function HeroCoin({
     const anchorIndexes = mobile ? MOBILE_ANCHOR_INDEXES : DESKTOP_ANCHOR_INDEXES;
     const landingProgress = mobile ? MOBILE_LANDING_PROGRESS : LANDING_PROGRESS;
     const finalAnchor = anchors.current[anchorIndexes[anchorIndexes.length - 1]];
+    const heroVisible = finalAnchor && getComputedStyle(finalAnchor).visibility !== "hidden";
+    currentRoot.visible = Boolean(heroVisible);
+    if (!heroVisible) return;
+
     const launching = p >= COIN_LAUNCH_START;
     const { index, local } = segmentForProgress(Math.min(p, COIN_LAUNCH_START), landingProgress);
     const from = anchors.current[anchorIndexes[index]];
@@ -191,7 +262,7 @@ function HeroCoin({
     const hitSource = index > 0 && Number.isFinite(contactProgress.current[index - 1]);
     const locked = !launching && ((flightLocal >= 1 && hitTarget) || (flightLocal <= 0 && hitSource));
 
-    if (locked) {
+    if (locked || p >= COIN_LAUNCH_END) {
       currentRoot.position.x = targetX;
       currentRoot.position.y = targetY;
     } else {
@@ -333,70 +404,42 @@ useGLTF.preload(HERO_COIN_MODEL_URL, false);
 useGLTF.preload(ROCKET_MODEL_URL, false);
 useGLTF.preload(AIRDROP_MODEL_URL, DRACO_DECODER_PATH);
 
-function RocketAndPayload({
-  active,
-  progress,
-}: Pick<HeroSceneProps, "active" | "progress">) {
+function RocketAndPayload({ progress }: { progress: MutableRefObject<number> }) {
   const rocket = useRef<Group>(null);
   const payload = useRef<Group>(null);
   const { viewport } = useThree();
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     const p = progress.current;
     const mobile = viewport.width < 8;
-    const rocketProgress = THREE.MathUtils.clamp((p - ROCKET_START) / (ROCKET_END - ROCKET_START), 0, 1);
-    const rocketEase = THREE.MathUtils.smoothstep(rocketProgress, 0, 1);
-    const payloadProgress = THREE.MathUtils.clamp((p - PAYLOAD_RELEASE) / (ROCKET_END - PAYLOAD_RELEASE), 0, 1);
-    const payloadEase = THREE.MathUtils.smoothstep(payloadProgress, 0, 1);
-
-    const rocketVisible = rocketProgress > 0 && rocketProgress < 1;
-    const startX = mobile ? -5.9 : -10.4;
-    const endX = mobile ? 5.4 : 8.25;
-    const startY = mobile ? 2.4 : -0.35;
-    const endY = mobile ? -3.25 : -5.5;
-    const zig = Math.sin(rocketProgress * Math.PI * 3.2) * (1 - rocketProgress * 0.18);
-    const zag = Math.sin(rocketProgress * Math.PI * 6.4 + 0.75) * 0.22;
-    const x = THREE.MathUtils.lerp(startX, endX, rocketEase) + zig * (mobile ? 0.55 : 1.05);
-    const y = THREE.MathUtils.lerp(startY, endY, rocketEase) + Math.sin(rocketProgress * Math.PI * 2.1) * (mobile ? 0.55 : 0.95) + zag;
-    const z = 2.2;
+    const inSequence = p >= 0 && p <= 1;
 
     if (rocket.current) {
-      rocket.current.visible = rocketVisible;
-      rocket.current.position.set(x, y, z);
-      rocket.current.rotation.set(0.12, 0.02, -0.95 - rocketProgress * 0.22 + Math.cos(rocketProgress * Math.PI * 3.2) * 0.16);
-      rocket.current.scale.setScalar(mobile ? 1.2 : 1.86);
-    }
-
-    if (payload.current) {
-      const released = p >= PAYLOAD_RELEASE;
-      payload.current.visible = released;
-      if (released) {
-        const releaseRocketProgress = THREE.MathUtils.clamp((PAYLOAD_RELEASE - ROCKET_START) / (ROCKET_END - ROCKET_START), 0, 1);
-        const releaseEase = THREE.MathUtils.smoothstep(releaseRocketProgress, 0, 1);
-        const releaseZig = Math.sin(releaseRocketProgress * Math.PI * 3.2) * (1 - releaseRocketProgress * 0.18);
-        const releaseZag = Math.sin(releaseRocketProgress * Math.PI * 6.4 + 0.75) * 0.22;
-        const releaseX = THREE.MathUtils.lerp(startX, endX, releaseEase) + releaseZig * (mobile ? 0.55 : 1.05);
-        const releaseY = THREE.MathUtils.lerp(startY, endY, releaseEase) + Math.sin(releaseRocketProgress * Math.PI * 2.1) * (mobile ? 0.55 : 0.95) + releaseZag;
-        const sway = Math.sin(state.clock.elapsedTime * 1.7 + payloadProgress * Math.PI * 2) * (mobile ? 0.18 : 0.34);
-        payload.current.position.x = THREE.MathUtils.damp(payload.current.position.x, releaseX + sway + payloadEase * (mobile ? -0.35 : -0.95), 7, delta);
-        payload.current.position.y = THREE.MathUtils.damp(payload.current.position.y, releaseY - payloadEase * (mobile ? 4.0 : 6.35), 7, delta);
-        payload.current.position.z = THREE.MathUtils.damp(payload.current.position.z, 1.95, 7, delta);
-        payload.current.rotation.x = -0.05 + Math.sin(state.clock.elapsedTime * 1.1) * 0.025;
-        payload.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.9) * 0.035;
-        payload.current.rotation.z = sway * 0.1;
-        payload.current.scale.setScalar((mobile ? 1.35 : 2.25) * (0.64 + payloadEase * 0.36));
+      rocket.current.visible = inSequence;
+      if (inSequence) {
+        const frame = interpolateFlight(p, mobile ? MOBILE_ROCKET_KEYFRAMES : DESKTOP_ROCKET_KEYFRAMES);
+        rocket.current.position.set(frame.x * viewport.width, frame.y * viewport.height, frame.z);
+        rocket.current.rotation.set(frame.rotationX, frame.rotationY, frame.rotationZ);
+        rocket.current.scale.setScalar(frame.scale);
       }
     }
 
-    if (active && (rocketVisible || p >= PAYLOAD_RELEASE)) state.invalidate();
+    if (payload.current) {
+      const released = inSequence && p >= 0.3;
+      payload.current.visible = released;
+      if (released) {
+        const frame = interpolateFlight(p, mobile ? MOBILE_PAYLOAD_KEYFRAMES : DESKTOP_PAYLOAD_KEYFRAMES);
+        payload.current.position.set(frame.x * viewport.width, frame.y * viewport.height, frame.z);
+        payload.current.rotation.set(frame.rotationX, frame.rotationY, frame.rotationZ);
+        payload.current.scale.setScalar(frame.scale);
+      }
+    }
   });
 
   return (
     <>
       <group ref={rocket} visible={false}>
-        <group rotation={[0, -Math.PI / 2, 0]}>
-          <ModelPrimitive url={ROCKET_MODEL_URL} />
-        </group>
+        <ModelPrimitive url={ROCKET_MODEL_URL} />
       </group>
       <group ref={payload} visible={false} rotation={[-0.05, 0, 0]} scale={0.8}>
         <ModelPrimitive url={AIRDROP_MODEL_URL} draco={DRACO_DECODER_PATH} />
@@ -422,6 +465,7 @@ function DemandRenderBridge({ invalidateRef }: Pick<HeroSceneProps, "invalidateR
 export default function HeroScene({
   active,
   progress,
+  launchProgress,
   anchors,
   impact,
   invalidateRef,
@@ -433,7 +477,7 @@ export default function HeroScene({
       orthographic
       camera={{ position: [0, 3.5, 8], zoom: 65, near: -100, far: 100 }}
       dpr={[1, 1.75]}
-      frameloop={active ? "always" : "demand"}
+      frameloop="demand"
       gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
       shadows
     >
@@ -446,7 +490,7 @@ export default function HeroScene({
       </Suspense>
       {launchAssetsEnabled ? (
         <Suspense fallback={null}>
-          <RocketAndPayload active={active} progress={progress} />
+          <RocketAndPayload progress={launchProgress} />
         </Suspense>
       ) : null}
     </Canvas>
