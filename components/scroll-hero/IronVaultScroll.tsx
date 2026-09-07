@@ -163,15 +163,6 @@ export function IronVaultScroll({
             0,
           );
 
-          heroTimeline.to(
-            headline,
-            {
-              yPercent: -150,
-              ease: "none",
-            },
-            0.91,
-          );
-
           /*
            * Letter impacts are NOT scheduled from absolute timeline
            * positions.
