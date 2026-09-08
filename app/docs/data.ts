@@ -36,7 +36,7 @@ Iron Vault is an ecosystem combining education, infrastructure, and community pa
 
 ## What is IV-SOL?
 
-IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the Solana blockchain. It serves as utility that powers access and alignment within Vaulted Academy, connecting learners, contributors, and builders.
+IV-SOL is the native digital token of the Iron Vault ecosystem, built on Solana using the Token-2022 Program. It supports defined utility across education, participation, recognition, access, community activity, and the wider Iron Vault ecosystem.
 
 ## Key Features
 
@@ -55,7 +55,7 @@ IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the
     html: `<h1>IV-SOL Overview</h1>
 <p>Iron Vault is an ecosystem combining education, infrastructure, and community participation in the digital economy.</p>
 <h2>What is IV-SOL?</h2>
-<p>IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the Solana blockchain. It serves as utility that powers access and alignment within Vaulted Academy, connecting learners, contributors, and builders.</p>
+<p>IV-SOL is the native digital token of the Iron Vault ecosystem, built on Solana using the Token-2022 Program. It supports defined utility across education, participation, recognition, access, community activity, and the wider Iron Vault ecosystem.</p>
 <h2>Key Features</h2>
 <ul>
 <li>Solana Token-2022 token</li>
@@ -83,9 +83,15 @@ IV-SOL is the native digital token of the Iron Vault ecosystem, operating on the
 
 **Verified Mint:** \`DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV\`
 
-**Blockchain:** Solana (Token-2022 Program)
-
 **Verification:** View on [Solscan](https://solscan.io/token/DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV)
+
+## Token Facts
+
+* **Ticker:** IV-SOL
+* **Network:** Solana
+* **Standard:** Token-2022 Program
+* **Supply:** 250 billion tokens
+* **Decimals:** 6
 
 ## Token Standard
 
@@ -123,8 +129,17 @@ IV-SOL is documented as a utility token within the Iron Vault ecosystem:
     html: `<h1>IV-SOL Token Specifications</h1>
 <h2>Token Address</h2>
 <p><strong>Verified Mint:</strong> <code>DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV</code></p>
-<p><strong>Blockchain:</strong> Solana (Token-2022 Program)</p>
 <p><strong>Verification:</strong> View on <a href="https://solscan.io/token/DTe8U4RnErPN1CKiJ5HcyZPEAGXMg6j6ueindYuowfjV">Solscan</a></p>
+<h2>Token Facts</h2>
+<table>
+<tbody>
+<tr><th scope="row">Ticker</th><td>IV-SOL</td></tr>
+<tr><th scope="row">Network</th><td>Solana</td></tr>
+<tr><th scope="row">Standard</th><td>Token-2022 Program</td></tr>
+<tr><th scope="row">Supply</th><td>250 billion tokens</td></tr>
+<tr><th scope="row">Decimals</th><td>6</td></tr>
+</tbody>
+</table>
 <h2>Token Standard</h2>
 <h3>Program</h3>
 <ul>
@@ -253,7 +268,7 @@ If you discover a security vulnerability, please report it responsibly to the Ir
 
 ## Prerequisites
 
-* A Solana blockchain wallet (Phantom, Magic Eden, Solflare, etc.)
+* A supported Solana wallet (Phantom, Magic Eden, Solflare, etc.)
 * SOL or other supported assets
 * Active internet connection
 
@@ -267,7 +282,7 @@ Click the wallet connection button on the swap interface. Select your wallet pro
 
 Choose the token you want to swap FROM. Most common:
 * SOL (Solana native token)
-* Other SPL tokens (USDC, USDT, etc.)
+* Other supported Solana tokens (USDC, USDT, etc.)
 
 ### Step 3: Enter Amount
 
@@ -291,7 +306,7 @@ Click confirm and approve the transaction in your wallet.
 
 ### Step 6: Wait for Confirmation
 
-The transaction will be processed on the Solana blockchain. This typically takes a few seconds to a minute.
+The transaction will be submitted to Solana. Keep the wallet open until the interface reports confirmation or an actionable error.
 
 ## Liquidity & Routing
 
@@ -304,9 +319,9 @@ Swaps are routed by Jupiter based on real-time market liquidity. Jupiter finds t
 ## Fees
 
 Transaction fees include:
-* **Network Fee:** Solana blockchain transaction cost (~0.00025 SOL)
-* **Jupiter Router Fee:** Included in price quote
-* **IV-SOL Transfer Fee:** Applies to received tokens
+* **Network Fee:** Solana network cost shown by the connected wallet
+* **Route Fees:** Any route or platform fees shown in the Jupiter quote
+* **IV-SOL Transfer Fee:** Token-2022 transfer-fee behavior visible in the transaction instructions
 
 ## Troubleshooting
 
@@ -338,7 +353,7 @@ Transaction fees include:
 </ol>
 <h2>Prerequisites</h2>
 <ul>
-<li>A Solana blockchain wallet (Phantom, Magic Eden, Solflare, etc.)</li>
+<li>A supported Solana wallet (Phantom, Magic Eden, Solflare, etc.)</li>
 <li>SOL or other supported assets</li>
 <li>Active internet connection</li>
 </ul>
@@ -349,7 +364,7 @@ Transaction fees include:
 <p>Choose the token you want to swap FROM. Most common:</p>
 <ul>
 <li>SOL (Solana native token)</li>
-<li>Other SPL tokens (USDC, USDT, etc.)</li>
+<li>Other supported Solana tokens (USDC, USDT, etc.)</li>
 </ul>
 <h3>Step 3: Enter Amount</h3>
 <p>Input the amount you want to swap. The interface will fetch current market rates and display the estimated IV-SOL you'll receive.</p>
@@ -366,7 +381,7 @@ Transaction fees include:
 </ul>
 <p>Click confirm and approve the transaction in your wallet.</p>
 <h3>Step 6: Wait for Confirmation</h3>
-<p>The transaction will be processed on the Solana blockchain. This typically takes a few seconds to a minute.</p>
+<p>The transaction will be submitted to Solana. Keep the wallet open until the interface reports confirmation or an actionable error.</p>
 <h2>Liquidity & Routing</h2>
 <p>Swaps are routed by Jupiter based on real-time market liquidity. Jupiter finds the best route across multiple DEXes:</p>
 <ul>
@@ -377,9 +392,9 @@ Transaction fees include:
 <h2>Fees</h2>
 <p>Transaction fees include:</p>
 <ul>
-<li><strong>Network Fee:</strong> Solana blockchain transaction cost (~0.00025 SOL)</li>
-<li><strong>Jupiter Router Fee:</strong> Included in price quote</li>
-<li><strong>IV-SOL Transfer Fee:</strong> Applies to received tokens</li>
+<li><strong>Network Fee:</strong> Solana network cost shown by the connected wallet</li>
+<li><strong>Route Fees:</strong> Any route or platform fees shown in the Jupiter quote</li>
+<li><strong>IV-SOL Transfer Fee:</strong> Token-2022 transfer-fee behavior visible in the transaction instructions</li>
 </ul>
 <h2>Troubleshooting</h2>
 <h3>Wallet Won't Connect</h3>
