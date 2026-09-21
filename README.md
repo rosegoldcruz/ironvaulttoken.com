@@ -1,121 +1,202 @@
-🛡️ Iron Vault (IV-SOL)
+# 🛡️ Iron Vault Token (IV-SOL)
 
+Iron Vault Token is an education-first digital finance ecosystem built around **Vaulted Academy**, **IV-SOL**, and a broader framework for understanding blockchain, tokenized systems, digital assets, and real-world financial infrastructure.
 
-Overview
+The core philosophy is simple:
 
-Iron Vault is an education-first platform designed to introduce and structure understanding around tokenized real estate and decentralized asset-backed systems.
+> **Education Before Speculation.**
 
-This repository contains the website and funnel infrastructure used to:
+This repository contains the production website, funnel architecture, educational entry points, token information, conversion infrastructure, and supporting frontend systems for the Iron Vault ecosystem.
 
-Educate users on real estate + blockchain integration
-Capture presale interest
-Guide users through a structured 3-step funnel
+---
 
+## Overview
 
-🎯 Project Goals
+Iron Vault is designed to give users a structured path into digital finance without relying on hype-first onboarding.
 
+The platform combines:
 
-Build awareness around real estate tokenization
-Establish an early-stage presale community
-Educate users before introducing token utility
-Lay groundwork for future real estate-backed systems
+- Digital finance education
+- Blockchain and token-system education
+- Vaulted Academy
+- IV-SOL ecosystem information
+- Structured conversion funnels
+- Lead capture and enrollment systems
+- Token utility education
+- Future real-world asset integrations
+- Expandable financial and software infrastructure
 
+Rather than pushing users directly toward token participation, Iron Vault is designed to first establish understanding, context, and system literacy.
 
-🔁 Funnel Architecture
+---
 
+## Core Ecosystem
 
-The platform is built around a 3-layer funnel:
+### Vaulted Academy
 
-1. Presale (Awareness Layer)
-Entry point for new users
-Education-driven onboarding
-Lead capture + community building
-2. Tokenomics (System Understanding)
-Explains token structure and distribution
-Outlines long-term utility concepts
-Provides transparency into mechanics
-3. Real Estate Layer (Future Integration)
-Introduces real-world asset backing
-Connects tokens to real estate concepts
-Sets foundation for stablecoin direction
+Vaulted Academy is the educational layer of Iron Vault.
 
+It is designed to teach users about subjects including:
 
-🧱 Tech Stack
+- Digital finance
+- Blockchain infrastructure
+- Token mechanics
+- Cybersecurity
+- Artificial intelligence
+- Decentralized systems
+- Financial technology
+- Programmable assets
 
+The Academy serves as the primary education and onboarding layer for the broader ecosystem.
 
-Framework: Next.js (App Router)
-Styling: Tailwind CSS
-Animation: GSAP / Framer Motion
-Forms: (GHL / Web3Forms / custom API)
-Hosting: Vercel
+### IV-SOL
 
+IV-SOL is the token component of the Iron Vault ecosystem.
 
-⚙️ Local Development
+The website provides educational information about:
 
+- Token mechanics
+- Ecosystem utility
+- Distribution structure
+- Participation models
+- Token-related systems
+- Future integrations
 
-# install dependencies
-npm install
+Token-related information should always be presented with clear educational context and without promises of returns or guaranteed outcomes.
 
-# run dev server
-npm run dev
+---
 
-# build for production
-npm run build
+## Project Objectives
 
+The platform is being built to:
 
-🚧 Current Status
+- Establish Iron Vault as a recognizable digital finance brand
+- Build Vaulted Academy into the primary educational entry point
+- Create a clear path from education to ecosystem participation
+- Explain IV-SOL mechanics transparently
+- Build scalable user acquisition funnels
+- Support future token integrations
+- Support future real-world asset systems
+- Create infrastructure capable of expanding into additional financial technology products
 
+---
 
-Phase: Education + Presale
-Token: Not fully launched
-Real Estate Integration: Conceptual / in development
+## Funnel Architecture
 
+The current platform uses a layered conversion model.
 
-⚠️ Disclaimer
+### 1. Education Layer
 
+The first objective is understanding.
 
-This project is currently:
+Users are introduced to:
 
-Educational
-Pre-launch
-Non-finalized in token structure
+- Iron Vault
+- Vaulted Academy
+- Digital finance concepts
+- Blockchain fundamentals
+- System-level financial education
 
-Nothing in this repository represents financial advice or guaranteed returns.
+Primary objective:
 
+**Teach before asking the user to act.**
 
-🧠 Philosophy
+---
 
+### 2. Ecosystem Layer
 
-Iron Vault is built on:
+Once users understand the platform, they can explore:
 
-Education before speculation
-Transparency over hype
-Real-world integration over empty token utility
+- IV-SOL
+- Token mechanics
+- Utility concepts
+- Distribution models
+- Ecosystem participation
+- Platform architecture
 
+The objective is transparency and system understanding rather than hype-driven conversion.
 
-📌 Notes
+---
 
+### 3. Conversion Layer
 
-This repository supports:
+The platform supports conversion actions such as:
 
-Funnel-based conversion systems
-Future token integration
-Real estate-backed financial modeling (planned)
+- Academy enrollment
+- Lead capture
+- Community growth
+- User registration
+- Funnel progression
+- Future ecosystem participation
 
+Conversion flows should remain education-led and trust-focused.
 
-🔮 Future Direction
+---
 
+### 4. Future Asset Infrastructure
 
-Token deployment
-Smart contract integration
-Real estate asset linkage
-Stablecoin development tied to yield-producing assets
+Future development may include integrations involving:
 
+- Real-world assets
+- Tokenized financial structures
+- Real estate systems
+- Yield-producing asset models
+- Programmable financial instruments
+- Stable-value digital asset concepts
 
-🔑 Bottom Line
+These systems remain subject to technical, operational, legal, and regulatory development.
 
+---
 
-This is not just a token site.
+## Tech Stack
 
-It is a system entry point into:
-real estate × blockchain × programmable finance
+### Frontend
+
+- **Next.js**
+- **App Router**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+
+### Motion / Interaction
+
+- **GSAP**
+- **Framer Motion**
+
+### Infrastructure
+
+- **Vercel**
+- API integrations
+- Server-side application routes
+- Production SEO and metadata infrastructure
+
+### Conversion / CRM
+
+The platform may integrate with systems such as:
+
+- GoHighLevel
+- Custom APIs
+- Lead capture forms
+- Enrollment systems
+- Marketing automation infrastructure
+
+---
+
+## SEO Architecture
+
+The production application is designed to support:
+
+- Dynamic metadata
+- Canonical URLs
+- Open Graph metadata
+- Twitter / X cards
+- `robots.txt`
+- Dynamic XML sitemap generation
+- Structured data / JSON-LD
+- Environment-aware indexing controls
+- Search engine crawl hygiene
+
+Production domain:
+
+```txt
+https://ironvaulttoken.com
