@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { FormEvent, useState } from "react";
 import styles from "./scrollHero.module.css";
-import { BusinessContact } from "@/components/business-contact";
 
 const ecosystemRows = [
   {
@@ -288,7 +287,6 @@ export function SiteSections() {
           </div>
         </div>
       </section>
-      <BusinessContact />
     </>
   );
 }
