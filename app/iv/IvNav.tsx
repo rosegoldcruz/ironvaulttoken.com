@@ -10,7 +10,7 @@ const links = [
   { label: "System", href: "/#technology" },
   { label: "Token", href: "/#tokenomics" },
   { label: "Enroll", href: "/academy" },
-  { label: "Contact", href: "/#partnership-inquiry" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function IvNav() {

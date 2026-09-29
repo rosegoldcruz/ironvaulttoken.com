@@ -125,6 +125,18 @@ export function AppverseFooter() {
               </div>
               <p className="max-w-sm text-sm text-neutral-600 dark:text-neutral-400">{content.tagline}</p>
             </div>
+            <div className="grid gap-4 text-sm text-neutral-600 dark:text-neutral-300 sm:grid-cols-2">
+              <div>
+                <p className="mb-2 font-semibold text-neutral-900 dark:text-white">IVT MEDIA GROUP contact</p>
+                <p><a href="tel:+15203555616" className="hover:underline">520-355-5616</a> · <a href="mailto:chris@ivtmediagroup.com" className="hover:underline">chris@ivtmediagroup.com</a></p>
+                <p><a href="tel:+18883682502" className="hover:underline">888-368-2502</a> · <a href="mailto:support@ivtmediagroup.com" className="hover:underline">support@ivtmediagroup.com</a></p>
+              </div>
+              <div>
+                <p className="mb-2 font-semibold text-neutral-900 dark:text-white">Business mailing address</p>
+                <address className="not-italic">5830 East 2nd Street<br />Suite 7000 #36157<br />Casper, Wyoming 82609</address>
+                <Link href="/contact" className="mt-2 inline-block text-lime-700 hover:underline dark:text-lime-300">View contact page and map</Link>
+              </div>
+            </div>
           </div>
 
           {/* Bottom bar */}

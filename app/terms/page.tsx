@@ -108,7 +108,7 @@ const sections = [
     title: "Arizona law governs these Terms, and the operator is IVT MEDIA GROUP.",
     body: [
       "These Terms and any dispute, claim, or controversy arising out of or relating to Iron Vault or your use of the platform will be governed by and construed in accordance with the laws of the State of Arizona, USA, without regard to conflict-of-law principles. You agree that Arizona is the governing jurisdiction for these Terms unless mandatory law requires otherwise.",
-      "If you need to contact us regarding these Terms, platform access, support issues, legal notices, or compliance concerns, you may contact IVT MEDIA GROUP at (888) 368-2502. References to Iron Vault throughout these Terms refer to the financial education platform operated by IVT MEDIA GROUP.",
+      "If you need to contact us regarding these Terms, platform access, support issues, legal notices, or compliance concerns, you may contact IVT MEDIA GROUP at support@ivtmediagroup.com or 888-368-2502, or write to 5830 East 2nd Street, Suite 7000 #36157, Casper, Wyoming 82609. References to Iron Vault throughout these Terms refer to the financial education platform operated by IVT MEDIA GROUP.",
       "By continuing to use Iron Vault, you acknowledge that you understand the educational purpose of the platform, the risks associated with digital assets, the absence of guaranteed outcomes, and your responsibility to make independent decisions based on your own judgment and professional advice where appropriate.",
     ],
   },

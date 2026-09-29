@@ -58,7 +58,7 @@ const sections = [
     eyebrow: "Contact",
     title: "IVT MEDIA GROUP is the business responsible for this policy.",
     body: [
-      "If you have questions about this Privacy Policy, your information, our data practices, or a request relating to your personal information, you may contact IVT MEDIA GROUP at (888) 368-2502.",
+      "If you have questions about this Privacy Policy, your information, our data practices, or a request relating to your personal information, you may contact IVT MEDIA GROUP at support@ivtmediagroup.com or 888-368-2502. Our business mailing address is 5830 East 2nd Street, Suite 7000 #36157, Casper, Wyoming 82609.",
       "This Privacy Policy applies to Iron Vault, the financial education platform operated by IVT MEDIA GROUP. By using the platform, you acknowledge that you have reviewed this policy and understand how your information may be collected, used, and shared as described here.",
     ],
   },

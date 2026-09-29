@@ -11,7 +11,7 @@ const navLinks = [
   { href: "/#system", label: "System" },
   { href: "/#token", label: "Token" },
   { href: "/#enroll", label: "Enroll" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ] as const
 
 export function SiteHeader() {
